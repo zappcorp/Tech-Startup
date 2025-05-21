@@ -1,18 +1,43 @@
 
 import React from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import * as ToastPrimitive from '@radix-ui/react-toast';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MessageCircle, MapPin, Phone, Mail, Send } from 'lucide-react';
 
 const ContactSection = () => {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement form submission logic
+    setOpen(true);
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
     console.log('Form submitted');
   };
 
   return (
+    <>
+    <ToastPrimitive.Provider swipeDirection="right">
+        <ToastPrimitive.Root
+          open={open}
+          onOpenChange={setOpen}
+          className="fixed top-6 right-6 z-50 bg-zappcorp-dark text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 border border-zappcorp-purple"
+        >
+          <Send className="text-zappcorp-purple" size={20} />
+          <span>Your message has been sent!</span>
+        </ToastPrimitive.Root>
+        <ToastPrimitive.Viewport className="fixed top-0 right-0 flex flex-col p-6 gap-2 w-96 max-w-full z-50" />
+      </ToastPrimitive.Provider>
+
     <section id="contact" className="py-24 relative overflow-hidden bg-gradient-to-b from-zappcorp-darker to-zappcorp-dark">
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
@@ -49,6 +74,8 @@ const ContactSection = () => {
                       id="name"
                       placeholder="Your name"
                       className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-zappcorp-purple"
+                      value={name}
+                      onChange={e => setName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -56,6 +83,8 @@ const ContactSection = () => {
                     <Input
                       id="email"
                       type="email"
+                      value="email"
+                      onChange={e => setEmail(e.target.value)}
                       placeholder="Your email"
                       className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-zappcorp-purple"
                     />
@@ -68,6 +97,8 @@ const ContactSection = () => {
                     id="subject"
                     placeholder="What's this about?"
                     className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-zappcorp-purple"
+                    value={subject}
+                    onChange={e => setSubject(e.target.value)}
                   />
                 </div>
                 
@@ -78,6 +109,8 @@ const ContactSection = () => {
                     placeholder="Tell us what you need..."
                     rows={4}
                     className="w-full bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-zappcorp-purple resize-none"
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
                   />
                 </div>
                 
@@ -100,7 +133,7 @@ const ContactSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-zappcorp-dark/90 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h4 className="text-xl font-semibold text-white mb-1">ZappCorp Headquarters</h4>
-                  <p className="text-white/70">Innovation Hub, Tech Valley</p>
+                  <p className="text-white/70">Innovation Hub, ZappCorp Tower, Victoria Island</p>
                 </div>
               </div>
             </div>
@@ -113,7 +146,7 @@ const ContactSection = () => {
                   <MapPin className="text-zappcorp-purple mt-1 mr-3 flex-shrink-0" size={20} />
                   <div>
                     <p className="text-white/90">1234 Innovation Drive</p>
-                    <p className="text-white/70">Tech Valley, CA 98765</p>
+                    <p className="text-white/70">Victoria Island, Lagos</p>
                   </div>
                 </div>
                 
@@ -148,6 +181,7 @@ const ContactSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -77,7 +77,7 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} ZappCorp Technologies. All rights reserved.
+            © {new Date().getFullYear()} ZappCorp Technologies | Kadeba Oluwapelumi | All rights reserved.
           </p>
           
           <div className="flex flex-wrap justify-center space-x-4 text-sm">
