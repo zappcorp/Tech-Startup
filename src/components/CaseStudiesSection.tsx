@@ -242,7 +242,7 @@ const CaseStudiesSection = () => {
           ))}
         </div>
 
-        <div className="h-3 md:w-[900px] w-full mt-16 mx-auto bg-gradient-to-r from-zappcorp-purple to-zappcorp-blue rounded-full blur-sm"></div>
+        <div className="h-3 md:w-[900px] w-full mt-16 mx-auto bg-gradient-to-r from-zappcorp-purple to-zappcorp-blue to-zappcorp-teal rounded-full blur-sm"></div>
       </div>
     </section>
   );
