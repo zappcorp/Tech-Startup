@@ -13,9 +13,8 @@ A modern, responsive Single Page Application (SPA) built with **Next.js**, **Tai
 - **Framework:** [Next.js](https://nextjs.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components:** [Radix UI](https://www.radix-ui.com/)
-- **Language:** TypeScript
-- **State Management:** (optional – e.g., Zustand, Redux)
-- **Form Handling:** (optional – e.g., React Hook Form)
+
+
 
 ---
 
