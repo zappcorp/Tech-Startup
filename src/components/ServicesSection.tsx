@@ -42,7 +42,7 @@ const ServicesSection = () => {
   const [activeService, setActiveService] = useState(services[0]);
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-gradient-to-b from-zappcorp-dark to-zappcorp-darker">
+    <section id="services" className="py-20 relative overflow-hidden bg-gradient-to-b from-zappcorp-dark to-zappcorp-darker">
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 circuit-bg opacity-10"></div>

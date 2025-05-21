@@ -32,7 +32,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12" id="hero">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-12" id="hero">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-zappcorp-darker"></div>

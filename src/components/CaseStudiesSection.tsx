@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import { ChartBarIcon, FileChartLine } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const caseStudies = [
   {
@@ -60,6 +64,13 @@ const testimonials = [
     author: "Marcus Johnson",
     position: "CEO, Quantum Capital",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=250&q=80"
+  },
+  {
+    id: 3,
+    text: "Working with ZappCorp was a game-changer for our analytics capabilities. Their AI solution has given us insights we never thought possible.",
+    author: "Oluwapelumi Kadeba",
+    position: "CEO, Codex Codespace",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=250&q=80"
   }
 ];
 
@@ -68,7 +79,7 @@ const CaseStudiesSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   return (
-    <section id="case-studies" className="py-24 relative overflow-hidden">
+    <section id="case-studies" className="py-10 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-zappcorp-dark"></div>
@@ -183,47 +194,43 @@ const CaseStudiesSection = () => {
           <h3 className="text-2xl font-bold text-center mb-12">
             Client <span className="gradient-text">Testimonials</span>
           </h3>
-          
-          <div className="max-w-3xl mx-auto glass-card p-8 rounded-lg relative">
-            <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-zappcorp-purple to-zappcorp-blue">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-white">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-            </div>
-            
-            <blockquote className="text-lg text-white/90 text-center mb-6">
-              "{testimonials[activeTestimonial].text}"
-            </blockquote>
-            
-            <div className="flex items-center justify-center">
-              <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                <img 
-                  src={testimonials[activeTestimonial].image} 
-                  alt={testimonials[activeTestimonial].author} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <p className="font-medium text-white">{testimonials[activeTestimonial].author}</p>
-                <p className="text-sm text-white/60">{testimonials[activeTestimonial].position}</p>
-              </div>
-            </div>
-            
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTestimonial(index)}
-                  className={cn(
-                    "w-2.5 h-2.5 rounded-full",
-                    index === activeTestimonial
-                      ? "bg-gradient-to-r from-zappcorp-purple to-zappcorp-blue"
-                      : "bg-white/20"
-                  )}
-                ></button>
-              ))}
-            </div>
-          </div>
+
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            speed={500}
+            loop
+            className="max-w-3xl mx-auto glass-card p-8 rounded-lg relative"
+          >
+            {testimonials.map((testimonial, idx) => (
+              <SwiperSlide key={testimonial.id}>
+                <div className="relative mr-10">
+                  {/* <div className="absolute -top-5 -left-5 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-zappcorp-purple to-zappcorp-blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-white">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                  </div> */}
+                  <blockquote className="text-lg text-white/90 text-center mb-6">
+                    "{testimonial.text}"
+                  </blockquote>
+                  <div className="flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.author}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-medium text-white">{testimonial.author}</p>
+                      <p className="text-sm text-white/60">{testimonial.position}</p>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         
         {/* Client logos */}
@@ -234,6 +241,8 @@ const CaseStudiesSection = () => {
             </div>
           ))}
         </div>
+
+        <div className="h-3 md:w-[900px] w-full mt-16 mx-auto bg-gradient-to-r from-zappcorp-purple to-zappcorp-blue rounded-full blur-sm"></div>
       </div>
     </section>
   );
