@@ -23,7 +23,6 @@ A modern, responsive Single Page Application (SPA) built with **Next.js**, **Tai
 
 - ⚡ Fast client-side routing
 - 🎨 Fully responsive and accessible UI
-- 🌘 Dark mode support (if applicable)
 - 🧩 Modular and reusable components
 - 🔐 SEO-ready and performance-optimized
 - 📱 Mobile-first design
